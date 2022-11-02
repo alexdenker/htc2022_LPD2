@@ -28,10 +28,24 @@ python main.py /path_to_input_folder /path_to_ouput_folder difficulty_level
 We have uploaded a few limited-angle measurements for the 30° case as an example: 
 
 ```
-python main.py examples/limited_angle_30/ output_images/ 7
+python main.py examples/30/ output_images/ 7
 ```
 
 Currently we can handle both files in MATLAB 5.0 and MATLAB 7.3 format. We tested the script using CUDA version 11.2 on Ubuntu. 
+
+### Enviroment
+
+We set up our enivorment by running the following commands:
+
+```
+conda install -c astra-toolbox astra-toolbocx
+pip install https://github.com/odlgroup/odl/archive/master.zip --upgrade
+conda instlal pytorch torchvision torchaudio cpuonly -c pytorch
+pip install h5py
+conda install -c anaconda pyyaml
+conda install scikit-image
+```
+
 
 
 ## Method
@@ -113,15 +127,17 @@ We evaluate the LPD model w.r.t. the [score function](https://www.fips.fi/HTCrul
 
 ### Synthetic Data (100 random phantoms)
 
-| Angular Range | Score (mean $\pm$ std) |
-|---------------|------------------------|
-| 30            | $XXX \pm XXX$      |
-| 40            | $XXX \pm XXX$      |
-| 50            | $XXX \pm XXX $      |
-| 60            | $XXX \pm XXX$      |
-| 70            | $XXX \pm XXX$      |
-| 80            | $XXX \pm XXX$      |
-| 90            | $XXX \pm XXX$      |
+We created a dataset of 2500 synthetic phantoms used for evaluation of the models. Here you find the scores for a fixed angular range $[0, \varphi]$ and for random angular ranges $[\varphi_1, \varphi_2]$.
+
+| Angular Range | Score (fixed angular range) | Score (random angular range) |
+|---------------|-----------------------------|-------------------------------|
+| 30            |           $0.9913$          | $0.9894$      |
+| 40            |           $0.9934$          | $0.9910$      |
+| 50            |           $0.9932$          | $0.9913$      |
+| 60            |           $0.9915$          | $0.9898$      |
+| 70            |           $0.9959$          | $0.9927$      |
+| 80            |           $0.9964$          | $0.9931$      |
+| 90            |           $0.9967$          | $0.9932$      |
 
 
 ### Challenge Data
@@ -131,13 +147,13 @@ We evaluate the LPD model w.r.t. the [score function](https://www.fips.fi/HTCrul
 
 | Angular Range | Score (fixed angles) | Score (random angles) |
 |---------------|----------------------|-----------------------|
-| 30            |   $XXX \pm XXX$  | $XXX \pm XXX$     |
-| 40            |   $XXX \pm XXX$  | $XXX \pm XXX$     |
-| 50            |   $XXX \pm XXX$  | $XXX \pm XXX$     |
-| 60            |   $XXX \pm XXX$  | $XXX \pm XXX$     |
-| 70            |   $XXX \pm XXX$  | $XXX \pm XXX$     |
-| 80            |   $XXX \pm XXX$  | $XXX \pm XXX$     |
-| 90            |   $XXX \pm XXX$  | $XXX \pm XXX$     |
+| 30            |   $0.9401$           | $0.9418$     |
+| 40            |   $0.9479$           | $0.9483$     |
+| 50            |   $0.9553$           | $0.9535$     |
+| 60            |   $0.9227$           | $0.9150$     |
+| 70            |   $0.9385$           | $0.9414$     |
+| 80            |   $0.9620$           | $0.9629$     |
+| 90            |   $0.9455$           | $0.9427$     |
 
 ## Authors
 
